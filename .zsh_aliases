@@ -1,0 +1,26 @@
+alias checkrepos='vcs custom --args fetch ; vcs status -s'
+alias rosenv='env | grep ROS'
+alias rosunset='unset $(printenv | grep ROS | awk '\''BEGIN{FS="=";}{print $1;}'\'')'
+alias rosws="source_ros_ws"
+alias sq="start_qt_creator"
+alias qtcreator="nohup qtcreator &"
+alias pycharm="nohup pycharm.sh &"
+
+function source_ros_ws() {
+  rosunset
+  echo "$MYRMEX_HOME/$1_ws/devel/setup.zsh"
+  source  $MYRMEX_HOME/$1_ws/devel/setup.zsh
+  cd $MYRMEX_HOME/$1_ws/
+  export ROS_MASTER_URI=http://$(hostname):11311
+  export ROSLAUNCH_SSH_UNKNOWN=1
+
+  export QT5_VERSION="5.10.1"
+  export QT5_PATH="/home/ap0n/apps/Qt5.10/5.10.1/gcc_64"
+  export CMAKE_PREFIX_PATH="${QT5_PATH}/lib/cmake/Qt5:${CMAKE_PREFIX_PATH}"
+  export QML2_IMPORT_PATH="${QT5_PATH}/qml"
+}
+
+function start_qt_creator() {
+	source $MYRMEX_HOME/pod_ws/devel/setup.zsh
+	qtcreator
+}
