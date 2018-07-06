@@ -2,7 +2,7 @@
 <style-scheme version="1.0" name="dark_ap0n">
   <style name="Text" foreground="#aaaaaa" background="#232323"/>
   <style name="Link" foreground="#0055ff"/>
-  <style name="Selection" foreground="#000000" background="#ff2ad8"/>
+  <style name="Selection" foreground="#000000" background="#d3d7cf"/>
   <style name="LineNumber" foreground="#888888" background="#232323"/>
   <style name="SearchResult" background="#555500"/>
   <style name="SearchScope" background="#222200"/>
