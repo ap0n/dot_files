@@ -17,7 +17,8 @@ function source_ros_ws() {
   export QT5_VERSION="5.10.1"
   export QT5_PATH="/home/ap0n/apps/Qt5.10/5.10.1/gcc_64"
   export CMAKE_PREFIX_PATH="${QT5_PATH}/lib/cmake/Qt5:${CMAKE_PREFIX_PATH}"
-  export QML2_IMPORT_PATH="${QT5_PATH}/qml"
+#  Disabling QML2_IMPORT_PATH because it causes QtCreator 4.7 to crash
+#  export QML2_IMPORT_PATH="${QT5_PATH}/qml"
 }
 
 function start_qt_creator() {
