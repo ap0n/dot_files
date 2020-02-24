@@ -89,14 +89,17 @@ export MYRMEX_HOME=/home/ap0n/workspace/myrmex
 export PATH=$PATH:/home/ap0n/apps/clion-2017.1.3/bin
 export PATH=$PATH:/home/ap0n/apps/pycharm-2017.2.3/bin
 export PATH=/usr/lib/ccache:$PATH
-export PATH=/home/ap0n/apps/Qt5.10/Tools/QtCreator/bin/:$PATH
+export PATH=/home/ap0n/apps/Qt/Tools/QtCreator/bin/:$PATH
+
+source $(catkin locate --shell-verb)
+
 if [ -f ~/.zsh_aliases ]; then
 	source ~/.zsh_aliases
 fi
 
-source /opt/ros/indigo/setup.zsh
+source /opt/ros/melodic/setup.zsh
 export ROS_MASTER_URI=http://$(hostname):11311
 export ROSLAUNCH_SSH_UNKNOWN=1
 
-export PATH=/home/ap0n/apps/clion-2018.1.1/bin/:$PATH
-source /usr/share/vcstool-completion/vcs.zsh
+export WORKSPACE=/home/ap0n/workspace
+ulimit -c unlimited
