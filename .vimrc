@@ -48,3 +48,17 @@ syntax on
 
 " turn line numbers on
 set number
+
+" Shortcuts
+
+" set the lead character to space
+let mapleader = " "
+
+" next buffer
+nnoremap <leader>n :bn<CR>
+
+" previous buffer
+nnoremap <leader>p :bp<CR>
+
+" delete current buffer
+nnoremap <leader>x :bd<CR>
