@@ -1,6 +1,10 @@
 {
 	"font_size": 11,
 	"highlight_line": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
 	"rulers":
 	[
 		80
