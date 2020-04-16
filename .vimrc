@@ -26,7 +26,8 @@ augroup spelling
 augroup END
 
 " Fix spell highlighting on comments
-highlight SpellBad ctermfg=0
+" highlight SpellBad ctermfg=0
+highlight SpellLocal ctermfg=0
 
 " Customize presentation of file types
 augroup identation
@@ -71,7 +72,49 @@ Plug 'preservim/nerdtree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" Airline decorates the statusbar
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" tagbar will show the code tag (class name, function name) in the statusbar
+Plug 'majutsushi/tagbar'
+
 call plug#end()
+
+" For vim-airline
+
+" Remove VCS imformation
+let g:airline_section_b = ""
+
+" Only display the filename. Not the full path
+let g:airline_section_c = '%t'
+
+" Remove filetype section
+let g:airline_section_y = ""
+
+" Usa a pretty theme
+let g:airline_theme = "papercolor"
+
+" Enable the tab line (open tabs on the top)
+let g:airline#extensions#tabline#enabled = 1
+
+" Show only the filename in the tabline
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Add mapping for opening tabs
+"let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+" Show buffer numbers
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+" Enable tagbar integration
+let g:airline#extensions#tagbar#enabled = 1
+
+" Display the full hierarchy of the tag, not just the tag itself.
+let g:airline#extensions#tagbar#flags = 'f'
+
+" Remove word counting (we are not journalists)
+let g:airline#extensions#wordcount#enabled = 0
 
 " Shortcuts
 
