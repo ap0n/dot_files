@@ -4,10 +4,13 @@
 set enc=utf-8
 set fenc=utf-8
 set termencoding=utf-8
+
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
+
 " use indentation of previous line
 set autoindent
+
 " use intelligent indentation for C
 set smartindent
 
@@ -33,7 +36,7 @@ augroup identation
  autocmd FileType gitcommit setlocal cc=73 spell
 augroup END
 
-"Add mouse support
+" Add mouse support
 set mouse=a
 
 " Open new split panes to right and bottom, which feels more natural:
