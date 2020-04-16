@@ -49,6 +49,20 @@ syntax on
 " turn line numbers on
 set number
 
+" setup vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+
+" NERDTree
+Plug 'preservim/nerdtree'
+
+call plug#end()
+
 " Shortcuts
 
 " set the lead character to space
@@ -62,3 +76,6 @@ nnoremap <leader>p :bp<CR>
 
 " delete current buffer
 nnoremap <leader>x :bd<CR>
+
+" set NERDTree shortcut
+noremap <leader><tab> :NERDTreeToggle<CR>
