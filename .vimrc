@@ -39,6 +39,9 @@ augroup END
 " Add mouse support
 set mouse=a
 
+" Only display the minimized filename when minimizing with <C-W>_
+set winminheight=0
+
 " Open new split panes to right and bottom, which feels more natural:
 set splitbelow
 set splitright
@@ -48,6 +51,9 @@ syntax on
 
 " turn line numbers on
 set number
+
+" highlight matching braces
+set showmatch
 
 " setup vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
