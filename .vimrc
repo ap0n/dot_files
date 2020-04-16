@@ -67,6 +67,10 @@ call plug#begin('~/.vim/plugged')
 " NERDTree
 Plug 'preservim/nerdtree'
 
+" fzf fuzzy finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 " Shortcuts
