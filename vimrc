@@ -139,8 +139,14 @@ nnoremap <leader>p :bp<CR>
 " delete current buffer
 nnoremap <leader>x :bd<CR>
 
+" force delete current buffer
+nnoremap <leader>X :bd!<CR>
+
 " set NERDTree shortcut
 noremap <leader><tab> :NERDTreeToggle<CR>
 
 " toggle spell checking
 noremap <silent> <F5> :set spell!<CR>
+
+" toggle tagbar
+noremap <F8> :TagbarToggle<CR>
