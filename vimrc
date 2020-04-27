@@ -82,6 +82,12 @@ Plug 'vim-airline/vim-airline-themes'
 " tagbar will show the code tag (class name, function name) in the statusbar
 Plug 'majutsushi/tagbar'
 
+" vim-ruby
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+
+" Automatically add 'end' when opening a block
+Plug 'tpope/vim-endwise'
+
 call plug#end()
 
 " For vim-airline
