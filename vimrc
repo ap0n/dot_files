@@ -20,6 +20,9 @@ filetype on
 " Set spelling language to English
 set spell spelllang=en_us
 
+" Disable spelling by default
+set nospell
+
 " Enable spelling on git commit
 augroup spelling
  autocmd! FileType gitcommit setlocal spell
@@ -132,3 +135,6 @@ nnoremap <leader>x :bd<CR>
 
 " set NERDTree shortcut
 noremap <leader><tab> :NERDTreeToggle<CR>
+
+" toggle spell checking
+noremap <silent> <F5> :set spell!<CR>
