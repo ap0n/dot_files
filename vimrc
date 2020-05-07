@@ -95,6 +95,9 @@ Plug 'tpope/vim-endwise'
 " ale linter
 Plug 'dense-analysis/ale'
 
+" vim fugitive
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
 " Set rubocop liter at ale
