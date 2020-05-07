@@ -39,7 +39,7 @@ highlight SpellLocal ctermfg=0
 " Customize presentation of file types
 augroup identation
  autocmd!
- autocmd FileType c,cpp,objc,cmake,yaml,ruby setlocal shiftwidth=2 softtabstop=2 expandtab cc=81 number
+ autocmd FileType c,cpp,objc,cmake,yaml,ruby,eruby,scss setlocal shiftwidth=2 softtabstop=2 expandtab cc=81 number
  autocmd FileType python setlocal shiftwidth=4 softtabstop=4 expandtab cc=80 number
  autocmd FileType gitcommit setlocal cc=73 spell
 augroup END
