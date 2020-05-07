@@ -92,7 +92,21 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 " Automatically add 'end' when opening a block
 Plug 'tpope/vim-endwise'
 
+" ale linter
+Plug 'dense-analysis/ale'
+
 call plug#end()
+
+" Set rubocop liter at ale
+let g:ale_linters = { 'ruby': ['rubocop'], }
+let g:ale_linters_explicit = 1
+
+" Set rubocop fixer at ale
+let g:ale_fixers = { 'ruby': ['rubocop'], }
+let g:ale_fixers_explicit = 1
+
+" Disable ale auto highlights
+let g:ale_set_highlights = 0
 
 " For vim-airline
 
