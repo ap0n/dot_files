@@ -244,7 +244,7 @@ Plug 'majutsushi/tagbar'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 " Automatically add 'end' when opening a block
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
 
 " ale linter
 Plug 'dense-analysis/ale'
@@ -254,6 +254,9 @@ Plug 'tpope/vim-fugitive'
 
 " Language Server support (currently solargraph)
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+
+" Highlight current word
+" Plug 'dominikduda/vim_current_word'
 
 call plug#end()
 
