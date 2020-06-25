@@ -12,6 +12,9 @@ set termencoding=utf-8
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
 
+" allow 'normal' backspace usage
+set backspace=indent,eol,start
+
 " allow opening new buffer when the current one is not saved
 set hidden
 
