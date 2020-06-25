@@ -1,5 +1,9 @@
 " Most of the settings come from Nikos Skalkotos .vimrc
 
+" Fix printing strange characters (>4;2m) (:help modifyOtherKeys for more)
+let &t_TI = ""
+let &t_TE = ""
+
 " set UTF-8 encoding
 set enc=utf-8
 set fenc=utf-8
