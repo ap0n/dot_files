@@ -212,6 +212,9 @@ set winminheight=0
 set splitbelow
 set splitright
 
+" python highlighting
+let python_highlight_all=1
+
 " turn syntax highlighting on
 syntax on
 
@@ -262,6 +265,22 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " Highlight current word
 " Plug 'dominikduda/vim_current_word'
 
+" below function is needed for ycm:
+function! BuildYCM(info)
+  if a:info.status == 'installed' || a:info.force
+    !./install.py
+  endif
+endfunction
+
+" ycm
+Plug 'ycm-core/YouCompleteMe', { 'branch': 'legacy-py2', 'do': function('BuildYCM') }
+
+" syntastic
+Plug 'scrooloose/syntastic'
+
+" PEP8 linter
+Plug 'nvie/vim-flake8'
+
 call plug#end()
 
 " Set rubocop liter at ale
@@ -310,6 +329,17 @@ let g:airline#extensions#tagbar#flags = 'f'
 " Remove word counting (we are not journalists)
 let g:airline#extensions#wordcount#enabled = 0
 
+" python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir,
+  'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
 " Shortcuts
 
 " set the lead character to space
@@ -341,6 +371,10 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" ycm stuff
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " code folding
 nnoremap <leader>, za
