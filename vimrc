@@ -18,6 +18,10 @@ set backspace=indent,eol,start
 " allow opening new buffer when the current one is not saved
 set hidden
 
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+
 " Some servers have issues with backup files, see #649 (coc)
 set nobackup
 set nowritebackup
@@ -337,3 +341,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" code folding
+nnoremap <leader>, za
