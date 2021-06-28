@@ -1,0 +1,19 @@
+#!/bin/bash
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+if ! [ "$BRANCH" ]; then
+    exit 1
+fi
+if [ "$BRANCH" = "master" ]; then
+  echo "You cannot run this @ master :)"
+  exit 1
+fi
+
+git fetch &&
+  git rebase -i --autosquash origin/master &&
+  git push -f &&
+  git checkout master &&
+  git pull --rebase &&
+  git merge $@ $BRANCH
+
