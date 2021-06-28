@@ -183,7 +183,7 @@ set nospell
 
 " Set dark background so that the color groups get adjusted
 " (necessary for making highlighting work in tmux)
-set background=dark
+" set background=dark
 
 " Enable spelling on git commit
 augroup spelling
