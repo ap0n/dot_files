@@ -1,1 +1,8 @@
 alias ll="ls -alFh"
+alias overmind="~/overmind/overmind-v2.1.1-linux-amd64/data"
+alias vpn="cd ~/Documents/ap0n_vpn_files && sudo --stdin openvpn --config openvpn.skroutz.conf --auth-user-pass credentials.txt < pass.txt; cd -"
+alias stg="ssh wowbagger@vms.skroutz.gr"
+alias emacs="emacs -nw"
+alias railsmigrate="bin/rails db:migrate RAILS_ENV=development"
+alias bufo_mysql="mysql -u ap0n -p -h ap0n.bufo.skroutz.gr marvin_production"
+alias open="xdg-open"
