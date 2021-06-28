@@ -185,6 +185,9 @@ source "$BASH_IT"/bash_it.sh
 . /usr/share/bash-completion/completions/fzf
 
 # rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH:$HOME/lein:$HOME/Downloads/RubyMine-2020.1.1/RubyMine-2020.1.1/bin"
+
+# node path (useful for yarn)
+export NODE_PATH=/usr/lib/nodejs:/usr/share/nodejs
 
 eval "$(rbenv init -)"
