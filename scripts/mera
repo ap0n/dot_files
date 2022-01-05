@@ -1,8 +1,9 @@
 #!/bin/bash
 cd ~/workspace/yogurt
-code ~/workspace/yogurt &
+# code ~/workspace/yogurt &
 tmux new-session -n 'vpn' -d 'cd ~/Documents/ap0n_vpn_files && sudo --stdin openvpn --config openvpn.skroutz.conf --auth-user-pass credentials.txt < pass.txt; cd -'
-tmux new-window -n 'rspec' 'cd ci/rspec && docker-compose up'
+tmux set-window-option remain-on-exit on
+tmux new-window -n 'rspec' 'cd ci/rspec && docker-compose up -V'
 tmux new-window -n 'overmind' '~/overmind/overmind-v2.1.1-linux-amd64/data s'
 tmux set-window-option remain-on-exit on
 tmux new-window -n 'console' 'rails c'

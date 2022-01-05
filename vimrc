@@ -1,5 +1,3 @@
-" Most of the settings come from Nikos Skalkotos .vimrc
-
 " Fix printing strange characters (>4;2m) (:help modifyOtherKeys for more)
 let &t_TI = ""
 let &t_TE = ""
@@ -183,7 +181,7 @@ set nospell
 
 " Set dark background so that the color groups get adjusted
 " (necessary for making highlighting work in tmux)
-" set background=dark
+set background=dark
 
 " Enable spelling on git commit
 augroup spelling
@@ -191,7 +189,7 @@ augroup spelling
 augroup END
 
 " Fix spell highlighting on comments
-" highlight SpellBad ctermfg=0
+highlight SpellBad ctermfg=0
 highlight SpellLocal ctermfg=0
 
 " Customize presentation of file types
@@ -259,8 +257,14 @@ Plug 'dense-analysis/ale'
 " vim fugitive
 Plug 'tpope/vim-fugitive'
 
+" gitgutter
+Plug 'airblade/vim-gitgutter'
+
 " Language Server support (currently solargraph)
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'ap0n', 'do': { -> coc#util#install()}}
+
+" RoR plugin
+Plug 'tpope/vim-rails'
 
 " Highlight current word
 " Plug 'dominikduda/vim_current_word'
@@ -281,6 +285,12 @@ Plug 'scrooloose/syntastic'
 " PEP8 linter
 Plug 'nvie/vim-flake8'
 
+" vim-bbye (kill buffer without messing-up splits
+Plug 'moll/vim-bbye'
+
+" ruanyl/vim-gh-line (open line in github)
+Plug 'ruanyl/vim-gh-line'
+
 call plug#end()
 
 " Set rubocop liter at ale
@@ -293,6 +303,9 @@ let g:ale_fixers_explicit = 1
 
 " Disable ale auto highlights
 let g:ale_set_highlights = 0
+
+" vim-gh-line copy GH URL instead of opening it
+let g:gh_open_command = 'fn() { echo "$@" | xclip -selection clipboard; }; fn '
 
 " For vim-airline
 
@@ -351,11 +364,13 @@ nnoremap <leader>n :bn<CR>
 " previous buffer
 nnoremap <leader>p :bp<CR>
 
-" delete current buffer
-nnoremap <leader>x :bd<CR>
+" delete current buffer (plugin: moll/vim-bbye)
+" nnoremap <leader>x :bd<CR>
+ nnoremap <leader>x :Bdelete<CR>
 
-" force delete current buffer
-nnoremap <leader>X :bd!<CR>
+" force delete current buffer (plugin: moll/vim-bbye)
+" nnoremap <leader>X :bd!<CR>
+nnoremap <leader>X :Bdelete!<CR>
 
 " set NERDTree shortcut
 noremap <leader><tab> :NERDTreeToggle<CR>
@@ -371,6 +386,9 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+"ctrl+k to Files
+nnoremap <leader>k :Files<CR>
 
 " ycm stuff
 let g:ycm_autoclose_preview_window_after_completion=1
