@@ -261,7 +261,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " Language Server support (currently solargraph)
-Plug 'neoclide/coc.nvim', {'branch': 'ap0n', 'do': { -> coc#util#install()}}
+"Plug 'neoclide/coc.nvim', {'branch': 'ap0n', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 " RoR plugin
 Plug 'tpope/vim-rails'
@@ -270,14 +271,14 @@ Plug 'tpope/vim-rails'
 " Plug 'dominikduda/vim_current_word'
 
 " below function is needed for ycm:
-function! BuildYCM(info)
-  if a:info.status == 'installed' || a:info.force
-    !./install.py
-  endif
-endfunction
+"function! BuildYCM(info)
+"  if a:info.status == 'installed' || a:info.force
+"    !./install.py
+"  endif
+"endfunction
 
 " ycm
-Plug 'ycm-core/YouCompleteMe', { 'branch': 'legacy-py2', 'do': function('BuildYCM') }
+"Plug 'ycm-core/YouCompleteMe', { 'branch': 'legacy-py2', 'do': function('BuildYCM') }
 
 " syntastic
 Plug 'scrooloose/syntastic'
@@ -341,17 +342,6 @@ let g:airline#extensions#tagbar#flags = 'f'
 
 " Remove word counting (we are not journalists)
 let g:airline#extensions#wordcount#enabled = 0
-
-" python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir,
-  'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
 
 " Shortcuts
 
