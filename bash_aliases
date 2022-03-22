@@ -4,5 +4,6 @@ alias vpn="cd ~/Documents/ap0n_vpn_files && sudo --stdin openvpn --config openvp
 alias stg="ssh wowbagger@vms.skroutz.gr"
 alias emacs="emacs -nw"
 alias railsmigrate="bin/rails db:migrate RAILS_ENV=development"
+alias rr="bundle exec rails runner"
 alias bufo_mysql="mysql -u ap0n -p -h ap0n.bufo.skroutz.gr marvin_production"
 alias open="xdg-open"
