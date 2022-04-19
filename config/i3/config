@@ -176,7 +176,7 @@ bar {
 bindsym $mod+Escape exec i3lock
 
 # Setup screens
-exec_always xrandr --output DP1-1 --mode 1920x1080 --above eDP1 --output DP1-3 --mode 1920x1200 --rotate left --right-of DP1-1
+exec_always xrandr --output DP-2 --mode 2560x1440 --right-of eDP-1 --output DP-1 --mode 2560x1440 --right-of DP-2
 
 # Enable external monitors
 bindsym $mod+F3 exec --no-startup-id xrandr --output DP1-1 --mode 1920x1080 --above eDP1 --output DP1-3 --mode 1920x1200 --rotate left --right-of DP1-1

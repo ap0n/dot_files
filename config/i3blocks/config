@@ -103,13 +103,13 @@ min_width=CPU: 100.00%
 # The battery instance defaults to 0.
 [battery]
 label=BAT
-instance=1
+instance=0
 #label=⚡
 interval=30
 
 [language]
 #label=LNG
-command=bash -c '/home/ap0n/.config/i3blocks/xkb-switch;/home/ap0n/.config/i3blocks/xkb-switch -W'
+command=bash -c '/home/anydriotis/.config/i3blocks/xkb-switch;/home/anydriotis/.config/i3blocks/xkb-switch -W'
 interval=persist
 #signal=1
 
