@@ -194,8 +194,7 @@ bindsym $mod+minus scratchpad show
 assign [class="Code"] $ws2
 assign [class="Google-chrome"] $ws3
 assign [class="Brave-browser"] $ws3
-assign [class="Mailspring"] $ws4
-assign [class="Slack"] $ws4
+assign [class="google-chat-electron"] $ws4
 assign [class="ViberPC"] $ws4
 assign [class="keepassxc"] $ws9
 for_window [class="Spotify"] move to workspace $ws9
