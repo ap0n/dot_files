@@ -132,7 +132,19 @@ Plug 'moll/vim-bbye'
 " ruanyl/vim-gh-line (open line in github)
 Plug 'ruanyl/vim-gh-line'
 
+" cpp-enhanced-highlight
+Plug 'octol/vim-cpp-enhanced-highlight'
+
 call plug#end()
+
+" For YouCompleteMe
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_global_ycm_extra_conf.py'
+let g:ycm_python_binary_path = 'python' " This works for virtualenvs
+let g:ycm_always_populate_location_list = 1 " Jump to errors with lnext, lprev
+let g:ycm_autoclose_preview_window_after_insertion = 1 " self explaining
+let g:ycm_auto_hover = '' " the auto hover is irritating
+let g:ycm_use_clangd = 1
 
 " Disable ale auto highlights
 let g:ale_set_highlights = 0
@@ -212,9 +224,22 @@ nnoremap <C-H> <C-W><C-H>
 "ctrl+k to Files
 nnoremap <leader>k :Files<CR>
 
-" ycm stuff
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" YouCompleteMe (ycm) stuff
+noremap <leader>D <plug>(YCMHover)
+noremap <leader>gc :YcmCompleter GoToDeclaration<CR>
+noremap <leader>gd :YcmCompleter GetDoc<CR>
+noremap <leader>gf :YcmCompleter FixIt<CR>
+noremap <leader>gg :YcmCompleter GoTo<CR>
+noremap <leader>gk :aboveleft sp \|YcmCompleter GoTo<CR>
+noremap <leader>gj :sp \|YcmCompleter GoTo<CR>
+noremap <leader>gh :aboveleft vsp \|YcmCompleter GoTo<CR>
+noremap <leader>gl :vsp \|YcmCompleter GoTo<CR>
+noremap <leader>gi :YcmCompleter GoToInclude<CR>
+noremap <leader>gp :YcmCompleter GetParent<CR>
+noremap <leader>gt :YcmCompleter GetType<CR>
+noremap <leader>gr :YcmCompleter GoToReferences<CR>
+noremap <F4> :YcmRestartServer<CR>
+
 
 " code folding
 nnoremap <leader>, za
