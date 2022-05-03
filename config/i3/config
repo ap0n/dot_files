@@ -100,7 +100,7 @@ set $ws1 "1 terminals"
 set $ws2 "2 code"
 set $ws3 "3 browser"
 set $ws4 "4 messaging"
-set $ws5 "5"
+set $ws5 "5 rviz"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -192,11 +192,13 @@ bindsym $mod+minus scratchpad show
 
 # Assign apps to workspaces
 assign [class="Code"] $ws2
+assign [class="QtCreator"] $ws2
 assign [class="Google-chrome"] $ws3
 assign [class="Brave-browser"] $ws3
 assign [class="google-chat-electron"] $ws4
 assign [class="ViberPC"] $ws4
 assign [class="keepassxc"] $ws9
+assign [class="rviz"] $ws5
 for_window [class="Spotify"] move to workspace $ws9
 # assign [class="Spotify"] $ws9  # <-- doesn't work for some reason :(
 
@@ -206,11 +208,8 @@ exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 # Autostart apps
 #exec brave-browser --password-store=gnome
 exec google-chrome --password-store=gnome
-exec keepassxc
 exec spotify
-exec slack
-exec /home/ap0n/apps/pcloud
-exec /opt/viber/Viber
+exec google-chat-electron
 
 # Network manager
 exec --no-startup-id nm-applet
