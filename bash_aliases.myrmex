@@ -4,10 +4,19 @@ alias rosws="source_ros_ws"
 
 function source_ros_ws() {
   rosunset
-  echo "$MYRMEX_HOME/$1_ws/devel/setup.bash"
-  source  "$MYRMEX_HOME/$1_ws/devel/setup.bash"
-  cd $MYRMEX_HOME/$1_ws/
+  echo "$MYRMEX_HOME/mrx_$1/devel/setup.bash"
+  source  "$MYRMEX_HOME/mrx_$1/devel/setup.bash"
+  cd $MYRMEX_HOME/mrx_$1/
 }
 
-alias killpod='ps aux | grep myrmex | awk '\''{print $2}'\'' | xargs kill -9'
-alias killrobotstatepublisher='ps aux | grep robot_state_publisher | awk '\''{print $2}'\'' | xargs kill -9'
+# Pod Python tools
+alias fm="rosrun mrx_fleet_manager fm"
+alias co="rosrun mrx_coordinator co"
+alias db="rosrun mrx_db db.py"
+alias ml="rosrun mrx_manipulator ml"
+
+add_mru() {
+  roslaunch mrx_mru add_mru_to_pod.launch name:="MRU000$1"
+}
+
+alias simpod="roslaunch mrx_coordinator pod.launch sim:=true"
