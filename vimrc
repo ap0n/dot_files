@@ -37,7 +37,7 @@ set nospell
 
 " Set dark background so that the color groups get adjusted
 " (necessary for making highlighting work in tmux)
-set background=dark
+" set background=dark
 
 " Enable spelling on git commit
 augroup spelling
@@ -54,6 +54,7 @@ augroup identation
  autocmd FileType c,cpp,objc,cmake,yaml,ruby,eruby,scss setlocal shiftwidth=2 softtabstop=2 expandtab cc=81 number
  autocmd FileType python setlocal shiftwidth=4 softtabstop=4 expandtab cc=80 number
  autocmd FileType gitcommit setlocal cc=73 spell
+ autocmd BufNewFile,BufRead *.launch,*.test set filetype=xml
 augroup END
 
 " Add mouse support
@@ -110,6 +111,9 @@ Plug 'tpope/vim-fugitive'
 " gitgutter
 Plug 'airblade/vim-gitgutter'
 
+" Yapf
+Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
+
 " below function is needed for ycm:
 function! BuildYCM(info)
   if a:info.status == 'installed' || a:info.force
@@ -134,6 +138,9 @@ Plug 'ruanyl/vim-gh-line'
 
 " cpp-enhanced-highlight
 Plug 'octol/vim-cpp-enhanced-highlight'
+
+" clang format
+Plug 'rhysd/vim-clang-format'
 
 call plug#end()
 
@@ -240,6 +247,25 @@ noremap <leader>gt :YcmCompleter GetType<CR>
 noremap <leader>gr :YcmCompleter GoToReferences<CR>
 noremap <F4> :YcmRestartServer<CR>
 
+" For Clang Formater
+let g:clang_format#code_style = 'google'
+let g:clang_format#command = 'clang-format-6.0'
+let g:clang_format#style_options = {
+        \ "DerivePointerAlignment": "false",
+        \ "PointerAlignment": "Right"}
+augroup clangformat
+  autocmd!
+  autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-U>ClangFormat<CR>
+  autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+augroup END
+" Toggle auto formatting:
+nnoremap <leader>; :ClangFormatAutoToggle<CR>
+
+" For yapf
+map <C-Y> :call yapf#YAPF()<cr>
+imap <C-Y> <c-o>:call yapf#YAPF()<cr>
+noremap <leader>y :call yapf#YAPF()<CR>
+let g:yapf_style = "pep8"
 
 " code folding
 nnoremap <leader>, za
