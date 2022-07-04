@@ -1,9 +1,12 @@
 alias rosenv='env | grep ROS'
 alias rosunset='unset $(printenv | grep ROS | awk '\''BEGIN{FS="=";}{print $1;}'\'')'
 alias rosws="source_ros_ws"
+alias spotify="spotify --force-device-scale-factor=2.0 2>&1 > /dev/null &"
 
 function source_ros_ws() {
+  HOSTNAME=$ROS_HOSTNAME
   rosunset
+  export ROS_HOSTNAME=$HOSTNAME
   echo "$MYRMEX_HOME/mrx_$1/devel/setup.bash"
   source  "$MYRMEX_HOME/mrx_$1/devel/setup.bash"
   cd $MYRMEX_HOME/mrx_$1/
@@ -20,3 +23,4 @@ add_mru() {
 }
 
 alias simpod="roslaunch mrx_coordinator pod.launch sim:=true"
+alias yapf="yapf3"
