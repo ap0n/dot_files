@@ -37,7 +37,7 @@ set nospell
 
 " Set dark background so that the color groups get adjusted
 " (necessary for making highlighting work in tmux)
-" set background=dark
+set background=dark
 
 " Enable spelling on git commit
 augroup spelling
@@ -107,6 +107,9 @@ Plug 'dense-analysis/ale'
 
 " vim fugitive
 Plug 'tpope/vim-fugitive'
+
+" fubitive - fugitive support for bitbucket
+Plug 'tommcdo/vim-fubitive'
 
 " gitgutter
 Plug 'airblade/vim-gitgutter'
@@ -228,7 +231,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"ctrl+k to Files
+"Files
 nnoremap <leader>k :Files<CR>
 
 " YouCompleteMe (ycm) stuff
@@ -266,6 +269,10 @@ map <C-Y> :call yapf#YAPF()<cr>
 imap <C-Y> <c-o>:call yapf#YAPF()<cr>
 noremap <leader>y :call yapf#YAPF()<CR>
 let g:yapf_style = "pep8"
+
+" fugitive
+noremap <leader>bb :.GBrowse!<CR>
+noremap <leader>bbg :.GBrowse<CR>
 
 " code folding
 nnoremap <leader>, za
