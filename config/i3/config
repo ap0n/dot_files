@@ -176,7 +176,7 @@ bar {
 bindsym $mod+Escape exec i3lock
 
 # Setup screens
-exec_always xrandr --output DP-2 --mode 2560x1440 --right-of eDP-1 --output DP-1 --mode 2560x1440 --right-of DP-2
+exec_always xrandr --output eDP-1 --mode 1920x1200 --output HDMI-1 --above eDP-1
 
 # Enable external monitors
 bindsym $mod+F3 exec --no-startup-id xrandr --output DP1-1 --mode 1920x1080 --above eDP1 --output DP1-3 --mode 1920x1200 --rotate left --right-of DP1-1
@@ -196,6 +196,7 @@ assign [class="QtCreator"] $ws2
 assign [class="Google-chrome"] $ws3
 assign [class="Brave-browser"] $ws3
 assign [class="google-chat-electron"] $ws4
+assign [class="Slack"] $ws4
 assign [class="ViberPC"] $ws4
 assign [class="keepassxc"] $ws9
 assign [class="rviz"] $ws5
@@ -209,7 +210,8 @@ exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 #exec brave-browser --password-store=gnome
 exec google-chrome --password-store=gnome
 exec spotify
-exec google-chat-electron
+exec slack
+exec ~/Downloads/pcloud
 
 # Network manager
 exec --no-startup-id nm-applet
