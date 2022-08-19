@@ -24,3 +24,4 @@ add_mru() {
 
 alias simpod="roslaunch mrx_coordinator pod.launch sim:=true"
 alias yapf="yapf3"
+alias mergecompilecommands="{ find . -name compile_commands.json -exec cat {} \; ;} | sed -e 's/\]\[/,/' > compile_commands.json"
