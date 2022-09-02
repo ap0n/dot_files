@@ -109,7 +109,7 @@ interval=30
 
 [language]
 #label=LNG
-command=bash -c '/home/anydriotis/.config/i3blocks/xkb-switch;/home/anydriotis/.config/i3blocks/xkb-switch -W'
+command=bash -c '/home/apostolos/.config/i3blocks/xkb-switch;/home/apostolos/.config/i3blocks/xkb-switch -W'
 interval=persist
 #signal=1
 
