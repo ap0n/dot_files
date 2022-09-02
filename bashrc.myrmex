@@ -112,14 +112,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-. /opt/ros/indigo/setup.bash
+. /opt/ros/noetic/setup.bash
 export PATH="/usr/lib/ccache:$PATH"
-export MYRMEX_HOME=/home/ap0n/workspace/myrmex
-#if [ -f ~/.bash_aliashes ]; then
-#    . ~/.bash_aliases
-#fi
-#. $MYRMEX_HOME/full_ws/devel/setup.bash
 
-export PATH="$PATH:/opt/microchip/xc8/v1.43/bin"
-
-export PATH="$PATH:"/opt/microchip/xc16/v1.32/bin""
