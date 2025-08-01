@@ -1,0 +1,256 @@
+set $mod Mod4
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:DejaVu Sans Mono 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Set preferred terminal emulator
+set $term kitty
+
+# start a terminal
+bindsym $mod+Return exec $term
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec wofi --show run
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+p split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+# bindsym $mod+Shift+space floating toggle
+bindsym $mod+shift+f floating toggle
+
+# change focus between tiling / floating windows
+#bindsym $mod+space focus mode_toggle
+bindsym $mod+Tab focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+#TODO set $ws1 "1 terminals"
+#TODO set $ws2 "2 coder
+#TODO set $ws3 "3 browser"
+#TODO set $ws4 "4 messaging"
+#TODO set $ws5 "5 rviz"
+#TODO set $ws6 "6"
+#TODO set $ws7 "7"
+#TODO set $ws8 "8"
+#TODO set $ws9 "9 music"
+#TODO set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+#TODO exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit Sway? This will end your Wayland session.' -B 'Yes, exit Sway' 'swaymsg exit' -s 'No'
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you #TODO enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Lock with $mod+shift+x
+#TODO bindsym $mod+Escape exec i3lock
+
+# Setup home monitor
+output "Dell Inc. DELL U2723QE H7G9FH3" scale 1.5
+
+#TODO exec_always xrandr --output eDP-1 --mode 1920x1200 --output HDMI-1 --above eDP-1
+
+# Enable external monitors
+#TODO bindsym $mod+F3 exec --no-startup-id xrandr --output DP1-1 --mode 1920x1080 --above eDP1 --output DP1-3 --mode 1920x1200 --rotate left --right-of DP1-1
+#TODO bindsym $mod+Shif+F3 exec --no-startup-id xrandr --output DP1-1 --off --output DP1-3 --off
+
+# scratchpad move/show
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# Assign spotify to workspace 11
+for_window [app_id="spotify"] move to workspace 9 
+exec spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
+
+for_window [app_id="Slack"] move to workspace 2
+exec slack --enable-features=UseOzonePlatform --ozone-platform=wayland
+
+for_window [app_id="google-chrome"] move to workspace 1
+exec google-chrome-stable
+
+# Network manager
+#TODO exec --no-startup-id nm-applet
+
+# Network manager
+#TODO exec --no-startup-id nm-applet
+
+# Keyboard bind keys
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86Calculator exec xcalc
+
+# # Sreen brightness controls
+#TODO bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+#TODO bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+# 
+# # Touchpad controls
+#TODO bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Wifi
+#TODO bindsym $mod+F8 exec nmcli radio wifi on
+#TODO bindsym $mod+Shift+F8 exec nmcli radio wifi off
+ 
+#b Focus urgent (red) workspace
+bindsym $mod+x [urgent=latest] focus
+
+bar {
+  swaybar_command waybar
+}
+
+# policykit authentication agent
+exec /usr/bin/lxpolkit
+
+# Network manager
+exec nm-applet
+
+# PulseAudio
+exec pasystray
+
+# Bluetooth
+exec blueman-applet
+
+# Lock screen
+bindsym $mod+Escape exec swaylock
+
+
+# move workspace to right
+bindsym $mod+bracketright move workspace to output right
+
+# move workspace to left
+bindsym $mod+bracketleft move workspace to output left
+
+# move workspace up
+bindsym Shift+$mod+bracketright move workspace to output up
+
+# move workspace down
+bindsym Shift+$mod+bracketleft move workspace to output down 
+
+# Capture a full-screen screenshot
+#TODO bindsym Print exec flameshot full -p ~/Pictures
+
+# Capture a screen-selection screenshot
+#TODO bindsym Shift+Print exec flameshot gui
+
+# Keyboard delay and repeat rate
+input * {
+  repeat_delay 250
+  repeat_rate 60
+  xkb_layout "us,gr"
+  xkb_options "grp:win_space_toggle"
+  natural_scroll enabled
+}
+
+# for send-notify
+exec mako 
+
+exec /usr/local/bin/sway-systemd-services.sh
+
+exec warp-taskbar
+
+include /etc/sway/config.d/*
