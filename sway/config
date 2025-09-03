@@ -247,6 +247,7 @@ input * {
   xkb_layout "us,gr"
   xkb_options "grp:win_space_toggle"
   natural_scroll enabled
+  tap enabled
 }
 
 # for send-notify
