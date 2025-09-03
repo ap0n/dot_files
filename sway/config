@@ -186,8 +186,8 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Calculator exec xcalc
 
 # # Sreen brightness controls
-#TODO bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
-#TODO bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec brightnessctl set +5% # increase screen brightness
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%- # decrease screen brightness
 # 
 # # Touchpad controls
 #TODO bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
