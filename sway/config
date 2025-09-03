@@ -218,6 +218,9 @@ exec blueman-applet
 # Lock screen
 bindsym $mod+Escape exec swaylock
 
+# Suspend the system
+bindsym $mod+Shift+Escape exec systemctl suspend
+
 
 # move workspace to right
 bindsym $mod+bracketright move workspace to output right
