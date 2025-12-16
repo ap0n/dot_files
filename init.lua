@@ -106,12 +106,27 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   -- UI / THEMES
+  {
+      "f-person/auto-dark-mode.nvim",
+      opts = {
+          update_interval = 1000,
+          set_dark_mode = function()
+              vim.api.nvim_set_option("background", "dark")
+              vim.cmd("colorscheme PaperColor")
+          end,
+          set_light_mode = function()
+              vim.api.nvim_set_option("background", "light")
+              vim.cmd("colorscheme PaperColor")
+          end,
+      },
+  },
   { 'nvim-neotest/nvim-nio' },
   {
       'NLKNguyen/papercolor-theme',
       priority = 1000,
       config = function()
-          vim.o.background = 'light'
+          -- Default to dark if the auto-plugin hasn't loaded yet
+          vim.o.background = 'dark'
           vim.cmd('colorscheme PaperColor')
       end
   },
@@ -121,7 +136,8 @@ require('lazy').setup({
       config = function()
           require('lualine').setup({
               options = {
-                  theme = 'papercolor_light',
+                  -- 'auto' will check if background is light or dark and adapt
+                  theme = 'auto',
                   section_separators = '',
                   component_separators = '',
               },
