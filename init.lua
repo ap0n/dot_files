@@ -298,3 +298,20 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 
 -- nvim-tree
 vim.keymap.set('n', '<leader><Tab>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+
+-------------------------------------------------------------------------------
+-- Git Commit Formatting (50/72 Rule)
+-------------------------------------------------------------------------------
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "gitcommit",
+  callback = function()
+    -- Enforce 72 column width for the body
+    vim.opt_local.textwidth = 72
+    
+    -- Show vertical guidelines at column 51 (for title) and 73 (for body)
+    vim.opt_local.colorcolumn = "51,73"
+    
+    -- Enable spell checking automatically for commits
+    vim.opt_local.spell = true
+  end,
+})
