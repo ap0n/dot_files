@@ -79,6 +79,13 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -------------------------------------------------------------------------------
+-- Disable netrw. We'll use nvim-tree for files (MUST happen before plugins for
+-- nvim-tree)
+-------------------------------------------------------------------------------
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-------------------------------------------------------------------------------
 -- Enable true color support
 -------------------------------------------------------------------------------
 if vim.fn.has('nvim') == 1 then
@@ -98,121 +105,166 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
+  -- UI / THEMES
   { 'nvim-neotest/nvim-nio' },
-  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-  { 'nvim-lualine/lualine.nvim' },
-  { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-  { 'nvim-tree/nvim-tree.lua' },
+  {
+      'NLKNguyen/papercolor-theme',
+      priority = 1000,
+      config = function()
+          vim.o.background = 'light'
+          vim.cmd('colorscheme PaperColor')
+      end
+  },
+  {
+      'nvim-lualine/lualine.nvim',
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
+      config = function()
+          require('lualine').setup({
+              options = {
+                  theme = 'papercolor_light',
+                  section_separators = '',
+                  component_separators = '',
+              },
+              sections = {
+                  lualine_a = {'mode'},
+                  lualine_b = {'branch', 'diff', 'diagnostics'},
+                  lualine_c = {'filename'},
+                  lualine_x = {'encoding', 'fileformat', 'filetype'},
+                  lualine_y = {'progress'},
+                  lualine_z = {'location'}
+              },
+              tabline = {
+                  lualine_a = {
+                      {
+                          'buffers',
+                          mode = 4,
+                          fmt = function(name, context)
+                              if context.current then return ' ' .. name end
+                              return name
+                          end,
+                          symbols = { modified = ' ●', alternate_file = ' ↶', directory = '' },
+                          show_filename_only = true,
+                          hide_filename_extension = false,
+                          show_modified_status = true,
+                      }
+                  },
+                  lualine_z = {'tabs'}
+              }
+          })
+      end
+  },
+
+  -- File Navigation
+  {
+      'nvim-tree/nvim-tree.lua',
+      config = function()
+          require("nvim-tree").setup()
+      end
+  },
+  {
+      'nvim-telescope/telescope.nvim',
+      dependencies = { 'nvim-lua/plenary.nvim' },
+      keys = {
+        { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'Find Files' },
+        { '<leader>fg', '<cmd>Telescope live_grep<cr>', desc = 'Live Grep' },
+        { '<leader>fb', '<cmd>Telescope buffers<cr>', desc = 'Buffers' },
+        { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = 'Help Tags' },
+      }
+  },
+
+  -- Git
   { 'tpope/vim-fugitive' },
   { 'lewis6991/gitsigns.nvim' },
-  { 'neovim/nvim-lspconfig' },
-  { 'hrsh7th/nvim-cmp' },
-  { 'hrsh7th/cmp-nvim-lsp' },
-  { 'hrsh7th/cmp-buffer' },
-  { 'hrsh7th/cmp-path' },
-  { 'L3MON4D3/LuaSnip' },
-  { 'mfussenegger/nvim-dap' },
-  { 'rcarriga/nvim-dap-ui' },
-  { 'theHamsta/nvim-dap-virtual-text' },
-  { 'NLKNguyen/papercolor-theme' },
-})
 
+  -- Treesitter
+  {
+      'nvim-treesitter/nvim-treesitter',
+      build = ':TSUpdate',
+      config = function()
+          -- SAFELY attempt to load the plugin
+          local status_ok, configs = pcall(require, "nvim-treesitter.configs")
+          if not status_ok then
+              return -- If missing, do nothing (prevents crash)
+          end
 
--------------------------------------------------------------------------------
--- Set PaperColor theme
--------------------------------------------------------------------------------
-vim.o.background = 'light'
-vim.cmd('colorscheme PaperColor')
-
--------------------------------------------------------------------------------
--- Setup nvim-tree (file navigation)
--------------------------------------------------------------------------------
-require("nvim-tree").setup()
-
--- Disable netrw. We'll use nvim-tree for files
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--------------------------------------------------------------------------------
--- ### LSP Setup
--------------------------------------------------------------------------------
-local lspconfig = require('lspconfig')
-
--- Python LSP
-lspconfig.pyright.setup({})
-
--- C++ LSP
-lspconfig.clangd.setup({})
-
--------------------------------------------------------------------------------
--- Autocompletion Setup
--------------------------------------------------------------------------------
-local cmp = require('cmp')
-cmp.setup({
-  mapping = cmp.mapping.preset.insert(),
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'buffer' },
-    { name = 'path' }
-  })
-})
-
--------------------------------------------------------------------------------
--- Debug Adapter Protocol (DAP) Setup
--------------------------------------------------------------------------------
-local dap = require('dap')
-local dapui = require('dapui')
-require('dapui').setup()
-require('nvim-dap-virtual-text').setup()
-
--------------------------------------------------------------------------------
--- Treesitter for better syntax highlighting
--------------------------------------------------------------------------------
-require('nvim-treesitter.configs').setup {
-  ensure_installed = { 'python', 'cpp', 'lua' },
-  highlight = { enable = true },
-  indent = { enable = true }
-}
--------------------------------------------------------------------------------
--- Setup lualine
--------------------------------------------------------------------------------
-require('lualine').setup({
-  options = {
-    theme = 'papercolor_light',
-    section_separators = '', 
-    component_separators = '',
+          configs.setup {
+              ensure_installed = { 'python', 'cpp', 'lua', 'vim', 'vimdoc', 'query' },
+              sync_install = false,
+              highlight = { enable = true },
+              indent = { enable = true }
+          }
+      end
   },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+
+  -- LSP & Completion (Updated for Neovim 0.11)
+  {
+      'neovim/nvim-lspconfig',
+      dependencies = {
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/nvim-cmp',
+      },
+      config = function()
+          local lspconfig = require('lspconfig')
+          local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+          -- In Neovim 0.11, we assign config to vim.lsp.config and use vim.lsp.enable
+          -- instead of calling .setup()
+
+          -- Python (Pyright)
+          if vim.fn.has('nvim-0.11') == 1 then
+              vim.lsp.config.pyright = { capabilities = capabilities }
+              vim.lsp.enable('pyright')
+
+              vim.lsp.config.clangd = { capabilities = capabilities }
+              vim.lsp.enable('clangd')
+          else
+              -- Fallback for older Neovim versions (just in case)
+              lspconfig.pyright.setup({ capabilities = capabilities })
+              lspconfig.clangd.setup({ capabilities = capabilities })
+          end
+      end
   },
-  tabline = {
-    lualine_a = {
-      {
-        'buffers',
-        mode = 4,
-        fmt = function(name, context)
-                if context.current then
-                  return '➤ ' .. name
-                end
-                return name
-	          end,
-        symbols = {
-          modified = ' ●',
-          alternate_file = '↶ ',
-          directory =  ''
-        },
-        show_filename_only = true,
-        hide_filename_extension = false,
-        show_modified_status = true,
-      }
-    },
-    lualine_z = {'tabs'}
-  }
+  {
+      'hrsh7th/nvim-cmp',
+      dependencies = {
+          'hrsh7th/cmp-buffer',
+          'hrsh7th/cmp-path',
+          'L3MON4D3/LuaSnip'
+      },
+      config = function()
+          local cmp = require('cmp')
+          cmp.setup({
+            mapping = cmp.mapping.preset.insert(),
+            sources = cmp.config.sources({
+              { name = 'nvim_lsp' },
+              { name = 'buffer' },
+              { name = 'path' }
+            })
+          })
+      end
+  },
+
+  -- Debug Adapter Protocol (DAP)
+  {
+      'mfussenegger/nvim-dap',
+      dependencies = {
+          'rcarriga/nvim-dap-ui',
+          'theHamsta/nvim-dap-virtual-text',
+          'nvim-neotest/nvim-nio'
+      },
+      config = function()
+          local dap = require('dap')
+          local dapui = require('dapui')
+
+          dapui.setup()
+          require('nvim-dap-virtual-text').setup()
+
+          dap.listeners.before.attach.dapui_config = function() dapui.open() end
+          dap.listeners.before.launch.dapui_config = function() dapui.open() end
+          dap.listeners.before.event_terminated.dapui_config = function() dapui.close() end
+          dap.listeners.before.event_exited.dapui_config = function() dapui.close() end
+      end
+  },
 })
 
 -------------------------------------------------------------------------------
