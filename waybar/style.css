@@ -1,6 +1,7 @@
 * {
 	font-size: 14px;
-	font-family: Ubuntu Mono Nerd Font;
+	font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", sans-serif;
+    font-weight: bold;
 }
 
 window#waybar {
