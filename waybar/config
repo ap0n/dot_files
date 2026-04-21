@@ -98,12 +98,14 @@
             "format": "CPU {usage:2}%"
         },
         "battery": {
+            "interval": 5,
             "states": {
                 "good": 95,
                 "warning": 30,
                 "critical": 15
             },
             "format": "{icon}  {capacity}%",
+            "format-charging": "{icon}   {capacity}%",
             "format-icons": [
                 "",
             "",

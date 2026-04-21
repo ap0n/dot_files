@@ -66,6 +66,9 @@ window#waybar {
 #battery {
 	color: #e4c700;
 }
+#battery.charging {
+	color: #2ecc71;
+}
 #disk {
 	color: #ff8c00;
 }
