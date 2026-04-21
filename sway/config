@@ -159,6 +159,9 @@ output "Dell Inc. DELL U2723QE H7G9FH3" scale 1.5
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
+# Start the fingerprints agent
+exec /usr/lib/x86_64-linux-gnu/polkit-mate/polkit-mate-authentication-agent-1
+
 # Assign spotify to workspace 11
 for_window [app_id="spotify"] move to workspace 9 
 exec spotify --enable-features=UseOzonePlatform --ozone-platform=wayland
@@ -245,7 +248,7 @@ input * {
   repeat_delay 250
   repeat_rate 60
   xkb_layout "us,gr"
-  xkb_options "grp:win_space_toggle"
+  xkb_options "grp:ctrl_space_toggle"
   natural_scroll enabled
   tap enabled
 }
