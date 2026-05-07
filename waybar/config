@@ -28,6 +28,9 @@
         "battery",
         "custom/left-arrow-light",
         "custom/left-arrow-dark",
+        "custom/power-profile",
+        "custom/left-arrow-light",
+        "custom/left-arrow-dark",
         "disk",
         "custom/left-arrow-light",
         "custom/left-arrow-dark",
@@ -118,6 +121,14 @@
         "",
         ""
         ]
+    },
+    "custom/power-profile": {
+        "exec": "~/.config/waybar/power-profile.sh",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "powerprofilesctl set performance",
+        "on-click-middle": "powerprofilesctl set balanced",
+        "on-click-right": "powerprofilesctl set power-saver"
     },
     "disk": {
         "interval": 5,

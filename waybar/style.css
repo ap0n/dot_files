@@ -28,6 +28,7 @@ window#waybar {
 #cpu,
 #battery,
 #disk,
+#custom-power-profile,
 #tray {
 	background: #1a1a1a;
 }
@@ -73,6 +74,18 @@ window#waybar {
 #disk {
 	color: #ff8c00;
 }
+#custom-power-profile {
+	color: #b58900;
+}
+#custom-power-profile.performance {
+	color: #dc322f;
+}
+#custom-power-profile.balanced {
+	color: #b58900;
+}
+#custom-power-profile.power-saver {
+	color: #859900;
+}
 #language {
 	color: #d33682;
 }
@@ -84,6 +97,7 @@ window#waybar {
 #memory,
 #cpu,
 #battery,
-#disk {
+#disk,
+#custom-power-profile {
 	padding: 0 10px;
 }
