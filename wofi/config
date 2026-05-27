@@ -1,0 +1,26 @@
+# ~/.config/wofi/config
+
+# Run in 'drun' mode (shows desktop applications with icons)
+mode=drun
+
+# Position and sizing
+location=center
+width=500
+height=400
+
+# Hide the search bar border/actions for a cleaner look
+always_parse_args=true
+show_all=false
+print_command=false
+
+# Visual behaviors
+insensitive=true
+allow_images=true
+image_size=24
+
+# Prompt text inside the input bar
+prompt=Search applications...
+
+# Emacs-style navigation (Ctrl+n for Down, Ctrl+p for Up)
+key_down=Ctrl-n
+key_up=Ctrl-p
