@@ -14,7 +14,7 @@ set $term kitty
 bindsym $mod+Return exec $term
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec wofi --show run
