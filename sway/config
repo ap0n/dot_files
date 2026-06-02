@@ -17,7 +17,7 @@ bindsym $mod+Return exec $term
 bindsym $mod+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+space exec wofi --show run
+bindsym $mod+space exec wofi --show run,drun
 
 # change focus
 bindsym $mod+h focus left
